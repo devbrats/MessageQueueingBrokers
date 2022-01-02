@@ -1,0 +1,13 @@
+.vscode
+MessageQueuingDemo/.vs/
+MessageQueuingDemo/App.Receiver/bin/
+MessageQueuingDemo/App.Receiver/obj/
+MessageQueuingDemo/App.Sender/bin/
+MessageQueuingDemo/App.Sender/obj/
+MessageQueuingDemo/Common/bin/
+MessageQueuingDemo/Common/obj/
+MessageQueuingDemo/Common.Contracts/bin/
+MessageQueuingDemo/Common.Contracts/obj/
+MessageQueuingDemo/MessageBrokers/bin/
+MessageQueuingDemo/MessageBrokers/obj/
+MessageQueuingDemo/Common/config.json/
