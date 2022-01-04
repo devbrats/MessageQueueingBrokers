@@ -1,63 +1,70 @@
-﻿using Common.Contracts;
-using Microsoft.Azure.ServiceBus;
+﻿using Azure.Messaging.ServiceBus;
+using Common.Contracts;
 using Newtonsoft.Json;
 using System;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MessageBrokers.AzureServiceBus
 {
-    public class AzureServiceBusMessageBroker :IMessageBroker
+    /// <summary>
+    /// Azure Service Bus using Azure.Messaging.ServiceBus, This is latest code style.
+    /// </summary>
+    public class AzureServiceBusMessageBroker : IMessageBroker
     {
-        private QueueClient _client;
+        private ServiceBusClient _client;
+        private ServiceBusSender _sender;
+        private string _queueName;
 
         public AzureServiceBusMessageBroker(string queueName, string connectionString)
         {
             Console.WriteLine("Configuring Azure Service Bus...");
-            _client = new QueueClient(connectionString, queueName);
-            Console.WriteLine($"Azure Service Bus Configured. Queue:{queueName}, ConnectionString :{connectionString}");
+            _client = new ServiceBusClient(connectionString);
+            Console.WriteLine($"Azure Service Bus Configured. ConnectionString :{connectionString}");
+            _queueName = queueName;
+            _sender = _client.CreateSender(queueName);
             Console.WriteLine("========================================================");
         }
 
         public async void Receive(EventHandler<MessageEventArgs> onMessageReceivedEvent)
         {
-            var messageHandler = new MessageHandlerOptions(ExceptionReceivedHandler)
+            var options = new ServiceBusProcessorOptions
             {
-                MaxConcurrentCalls = 1,
-                AutoComplete = false
+                AutoCompleteMessages = false,
+                MaxConcurrentCalls = 2
             };
 
-            _client.RegisterMessageHandler(async (arg, token) => 
+            ServiceBusProcessor processor = _client.CreateProcessor(_queueName, options);
+
+            processor.ProcessMessageAsync += (args) =>
             {
                 onMessageReceivedEvent.Invoke(this,
-                    new MessageEventArgs()
-                    {
-                        Message = arg.Body
-                    });
+                  new MessageEventArgs()
+                  {
+                      Message = args.Message.Body.ToArray()
+                  });
+                return args.CompleteMessageAsync(args.Message);
+            };
 
-                await _client.CompleteAsync(arg.SystemProperties.LockToken);
-            }, messageHandler);
+            processor.ProcessErrorAsync += (args) =>
+            {
+                Console.WriteLine(args.ErrorSource);
+                Console.WriteLine(args.FullyQualifiedNamespace);
+                Console.WriteLine(args.EntityPath);
+                Console.WriteLine(args.Exception.ToString());
+                return Task.CompletedTask;
+            };
 
-            Console.ReadLine();
+            await processor.StartProcessingAsync();
 
-            await _client.CloseAsync();
         }
 
         public async void Send<T>(T message)
         {
             var messageBody = JsonConvert.SerializeObject(message);
-            var msg = new Microsoft.Azure.ServiceBus.Message() 
-            {
-                Body = Encoding.UTF8.GetBytes(messageBody),
-                ContentType = "application/json"
-            };
+            var msg = new ServiceBusMessage(messageBody);
+            msg.ContentType = "application/json";
 
-            await _client.SendAsync(msg);
-        }
-
-        private Task ExceptionReceivedHandler(ExceptionReceivedEventArgs arg)
-        {
-            return Task.CompletedTask;
+            await _sender.SendMessageAsync(msg);
         }
 
     }

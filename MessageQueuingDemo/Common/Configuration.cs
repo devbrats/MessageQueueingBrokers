@@ -12,7 +12,7 @@ namespace Common
         public static void Init()
         {
             // config.json contains details such as name, connection string about the configured message broker.
-            var config = File.ReadAllText(@"config.json");
+            var config = File.ReadAllText(@"Config\config.json");
             MessageBrokerConfiguration = JsonConvert.DeserializeObject<MessageBrokerConfiguration>(config);
             MessageBrokerConfiguration.MessageBrokers = MessageBrokerConfiguration.MessageBrokers.Where(x => x.Name.Equals(MessageBrokerConfiguration.MessageBroker.ToString())).ToList();
         }
