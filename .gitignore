@@ -10,5 +10,4 @@ MessageQueuingDemo/Common.Contracts/bin/
 MessageQueuingDemo/Common.Contracts/obj/
 MessageQueuingDemo/MessageBrokers/bin/
 MessageQueuingDemo/MessageBrokers/obj/
-config.json
-MessageQueuingDemo/Common/config.json/
+

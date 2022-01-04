@@ -1,0 +1,14 @@
+/*
+  This is the configuration file to configure message broker details to run the demo.
+*/
+
+{
+  "MessageBrokers": [
+    {
+      "Name": "RabbitMQ",
+      "QueueName": "mb_demo_app_queue",
+      "ConnectionString": ""
+    }
+  ],
+  "MessageBroker": "RabbitMQ"
+}
