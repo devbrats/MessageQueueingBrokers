@@ -22,16 +22,15 @@ namespace MessageBrokers.RabbitMQ
             _connectionString = connectionString;
             Init();
             Console.WriteLine($"RabbitMQ Configured. Queue:{name}, ConnectionString :{connectionString}");
-            Console.WriteLine("========================================================");
         }
 
-        public void Receive(EventHandler<MessageEventArgs> onMessageReceivedEvent)
+        public void Receive(EventHandler<ReceiveMessageEventArgs> onMessageReceivedEvent)
         {
             _consumer = new EventingBasicConsumer(_channel);
             _consumer.Received += (sender, args) =>
             {
                 onMessageReceivedEvent.Invoke(this,
-                    new MessageEventArgs()
+                    new ReceiveMessageEventArgs()
                     {
                         Message = args.Body.ToArray()
                     });
@@ -63,7 +62,6 @@ namespace MessageBrokers.RabbitMQ
                 autoDelete: false,
                 arguments: null);
             Console.WriteLine("Channel Created.");
-            Console.WriteLine("========================================================");
 
         }
     }

@@ -22,10 +22,9 @@ namespace MessageBrokers.AzureServiceBus
             Console.WriteLine($"Azure Service Bus Configured. ConnectionString :{connectionString}");
             _queueName = queueName;
             _sender = _client.CreateSender(queueName);
-            Console.WriteLine("========================================================");
         }
 
-        public async void Receive(EventHandler<MessageEventArgs> onMessageReceivedEvent)
+        public async void Receive(EventHandler<ReceiveMessageEventArgs> onMessageReceivedEvent)
         {
             var options = new ServiceBusProcessorOptions
             {
@@ -38,7 +37,7 @@ namespace MessageBrokers.AzureServiceBus
             processor.ProcessMessageAsync += (args) =>
             {
                 onMessageReceivedEvent.Invoke(this,
-                  new MessageEventArgs()
+                  new ReceiveMessageEventArgs()
                   {
                       Message = args.Message.Body.ToArray()
                   });

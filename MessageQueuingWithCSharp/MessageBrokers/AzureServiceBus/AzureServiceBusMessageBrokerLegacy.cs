@@ -10,11 +10,11 @@ namespace MessageBrokers.AzureServiceBus
     /// <summary>
     /// Azure Service Bus using Azure.ServiceBus, This is legacy code for azure service bus.
     /// </summary>
-    public class AzureServiceBusMessageBroker1 : IMessageBroker
+    public class AzureServiceBusMessageBrokerLegacy : IMessageBroker
     {
         private QueueClient _client;
 
-        public AzureServiceBusMessageBroker1(string queueName, string connectionString)
+        public AzureServiceBusMessageBrokerLegacy(string queueName, string connectionString)
         {
             Console.WriteLine("Configuring Azure Service Bus...");
             _client = new QueueClient(connectionString, queueName);
@@ -22,7 +22,7 @@ namespace MessageBrokers.AzureServiceBus
             Console.WriteLine("========================================================");
         }
 
-        public async void Receive(EventHandler<MessageEventArgs> onMessageReceivedEvent)
+        public async void Receive(EventHandler<ReceiveMessageEventArgs> onMessageReceivedEvent)
         {
             var messageHandler = new MessageHandlerOptions(ExceptionReceivedHandler)
             {
@@ -33,7 +33,7 @@ namespace MessageBrokers.AzureServiceBus
             _client.RegisterMessageHandler(async (arg, token) =>
             {
                 onMessageReceivedEvent.Invoke(this,
-                    new MessageEventArgs()
+                    new ReceiveMessageEventArgs()
                     {
                         Message = arg.Body
                     });

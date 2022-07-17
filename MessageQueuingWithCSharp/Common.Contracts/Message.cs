@@ -13,8 +13,13 @@ namespace Common.Contracts
         }
     }
 
-    public class MessageEventArgs : EventArgs
+    public class ReceiveMessageEventArgs : EventArgs
     {
         public byte[] Message { get; set; }
+    }
+
+    public class SendMessageArgs: EventArgs
+    {
+        public Message Message { get; set; }
     }
 }

@@ -4,7 +4,7 @@ namespace Common.Contracts
 {
     public interface IMessageBroker
     {
-        void Receive(EventHandler<MessageEventArgs> onMessageReceivedEvent);
+        void Receive(EventHandler<ReceiveMessageEventArgs> onMessageReceivedEvent);
 
         void Send<T>(T message);
     }

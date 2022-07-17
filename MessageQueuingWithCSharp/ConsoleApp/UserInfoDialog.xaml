@@ -1,0 +1,16 @@
+﻿<Window x:Class="ConsoleApp.UserInfoDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ConsoleApp"
+        mc:Ignorable="d" WindowStyle="None" ResizeMode="NoResize"
+        Title="" Height="100" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <Grid>
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock Text="Enter Your UserName:" Margin="5"/>
+            <TextBox Height="30"  Margin="5" x:Name="UserName" KeyDown="TextBox_KeyDown"/>
+        </StackPanel>
+       
+    </Grid>
+</Window>
