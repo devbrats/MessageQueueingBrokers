@@ -1,11 +1,5 @@
+
 .vscode
-MessageQueuingWithCSharp/.vs/
-MessageQueuingWithCSharp/ConsoleApp/bin/
-MessageQueuingWithCSharp/ConsoleApp/obj/
-MessageQueuingWithCSharp/Common/bin/
-MessageQueuingWithCSharp/Common/obj/
-MessageQueuingWithCSharp/Common/Config/
-MessageQueuingWithCSharp/Common.Contracts/bin/
-MessageQueuingWithCSharp/Common.Contracts/obj/
-MessageQueuingWithCSharp/MessageBrokers/bin/
-MessageQueuingWithCSharp/MessageBrokers/obj/
+**/.vs/
+**/bin/*
+**/obj/*
