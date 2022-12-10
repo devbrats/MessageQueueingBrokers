@@ -1,0 +1,10 @@
+{
+  "MessageBrokers": [
+    {
+      "Name": "RabbitMQ",
+      "QueueName": "mb_demo_app_queue",
+      "ConnectionString": "amqp://localhost"
+    }
+  ],
+  "MessageBroker": "RabbitMQ"
+}

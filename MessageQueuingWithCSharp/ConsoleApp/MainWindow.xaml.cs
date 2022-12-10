@@ -1,4 +1,4 @@
-﻿using Common.Contracts;
+﻿using Common;
 using System.Windows;
 
 namespace ConsoleApp
@@ -48,7 +48,7 @@ namespace ConsoleApp
         {
             if (SendMessagesTextBox.Text != "")
             {
-                _dataContext.MessageHandler.Invoke(this, new SendMessageArgs()
+                _dataContext.MessageSender.Invoke(this, new SendMessageArgs()
                 {
                     Message = new Message()
                     {

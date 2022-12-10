@@ -1,6 +1,6 @@
-﻿namespace Common
+﻿namespace ConsoleApp.MessageBrokerConfiguration
 {
-    public class MessageBroker
+    public class MessageBrokerInfo
     {
         public string Name { get; set; }
         public string QueueName { get; set; }

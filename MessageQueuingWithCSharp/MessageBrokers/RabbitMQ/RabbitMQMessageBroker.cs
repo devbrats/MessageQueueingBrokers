@@ -1,4 +1,4 @@
-﻿using Common.Contracts;
+﻿using Common;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;

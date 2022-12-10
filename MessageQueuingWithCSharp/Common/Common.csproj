@@ -4,15 +4,4 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Common.Contracts\Common.Contracts.csproj" />
-    <ProjectReference Include="..\MessageBrokers\MessageBrokers.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Config\config.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

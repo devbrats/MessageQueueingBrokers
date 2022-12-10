@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{9F48F3B2-9F21-4F41-B5FD-8EFEAEEBE61A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MessageBrokers", "MessageBrokers\MessageBrokers.csproj", "{3935B093-1D89-4FDC-AEC8-3BF1188D7300}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Contracts", "Common.Contracts\Common.Contracts.csproj", "{835D9CCB-E4D5-43B1-9C15-F87B445BD6D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{835D9CCB-E4D5-43B1-9C15-F87B445BD6D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{D05872C1-0C57-4F09-93A4-ADC9974FCE72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{D05872C1-0C57-4F09-93A4-ADC9974FCE72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9F48F3B2-9F21-4F41-B5FD-8EFEAEEBE61A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9F48F3B2-9F21-4F41-B5FD-8EFEAEEBE61A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9F48F3B2-9F21-4F41-B5FD-8EFEAEEBE61A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9F48F3B2-9F21-4F41-B5FD-8EFEAEEBE61A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3935B093-1D89-4FDC-AEC8-3BF1188D7300}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3935B093-1D89-4FDC-AEC8-3BF1188D7300}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3935B093-1D89-4FDC-AEC8-3BF1188D7300}.Release|Any CPU.ActiveCfg = Release|Any CPU

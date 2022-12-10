@@ -8,8 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Common.Contracts\Common.Contracts.csproj" />
+    <None Remove="MessageBrokerConfiguration\config.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="MessageBrokerConfiguration\config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\MessageBrokers\MessageBrokers.csproj" />
   </ItemGroup>
 
 </Project>

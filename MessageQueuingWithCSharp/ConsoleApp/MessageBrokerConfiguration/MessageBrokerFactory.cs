@@ -1,18 +1,20 @@
-﻿using Common.Contracts;
+﻿
+using System.Linq;
+using Common;
 using MessageBrokers.AzureServiceBus;
 using MessageBrokers.RabbitMQ;
-using System.Linq;
 
-namespace Common
+namespace ConsoleApp.MessageBrokerConfiguration
 {
     public class MessageBrokerFactory
     {
         public static IMessageBroker GetMessageBroker()
         {
-            Configuration.Init();
-            var messageBroker = Configuration.MessageBrokerConfiguration.MessageBrokers.FirstOrDefault();
+            var mbConfiguration = new MessageBrokerConfiguration();
+            mbConfiguration.Init();
+            var messageBroker = mbConfiguration.MessageBrokers.FirstOrDefault();
 
-            if (Configuration.MessageBrokerConfiguration.MessageBroker == MessageBrokerType.AzureServiceBus)
+            if (mbConfiguration.MessageBrokerType == MessageBrokerType.AzureServiceBus)
             {
                 return new AzureServiceBusMessageBroker(messageBroker.QueueName, messageBroker.ConnectionString);
             }
